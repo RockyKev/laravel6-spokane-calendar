@@ -20,6 +20,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/articles', 'ArticlesController@index');
+Route::get('/articles/{article}', 'ArticlesController@show');
 
 Route::get('/contact', function () {
     return view('contact');
