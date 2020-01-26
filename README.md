@@ -68,6 +68,48 @@ $prop //to review
 $prop->save();
 ```
 
+## CRUD method for a controller
+
+    index = show all list
+    show = show single resource
+    create = to create new resource
+    store = save your new creation
+    edit = to modify resource
+    update = save your edit
+    destroy = to destroy it
+
+
+    php artisan make:controller THINGController -r
+
+    //this will create the model and tie it to the controller as well.
+    php artisan make:controller THINGController -r -m THING
+
+## CRUD but for routing
+
+http web verbs : GET, POST, PUT, DELETE
+
+```
+GET /articles
+GET /articles/:id
+GET /articles/:id/edit
+GET /articles/create
+
+POST /articles
+PUT /articles/:id
+DELETE /articles/:id
+
+```
+
+    REST
+    Route::get('/articles', 'ArticlesController@index');
+    Route::get('/articles/{article}', 'ArticlesController@show');
+
+```
+Question: How to use Restful Routing and static pages like about us together? Should I create a route like this Route::get("about-us", 'AboutUsController@index') ?
+
+ANSWER: Don't bother. I typically create a PagesController for all static pages. So you'd have actions like PagesController@about, PagesController@contact, etc.
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
