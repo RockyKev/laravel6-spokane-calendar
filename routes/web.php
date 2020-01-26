@@ -30,7 +30,15 @@ Route::get('/simple', function () {
 });
 
 Route::get('/about', function () {
-    return view('about');
+    // $articles = App\Article::all();
+    $articles = App\Article::take(3)->latest()->get();
+    // $articles = App\Article::take(2)->get();
+    // $articles = App\Article::paginate(2);
+
+    // return $article;
+    return view('about', [
+        'articles' => $articles
+    ]);
 });
 
 

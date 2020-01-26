@@ -53,6 +53,21 @@ OR use the mix function
 
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+## Adding data rows to table
+
+```
+php artisan tinker
+
+$prop = new App\PROP
+
+$prop->value = "new value here"
+$prop->data = "new data here"
+
+$prop //to review
+
+$prop->save();
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
