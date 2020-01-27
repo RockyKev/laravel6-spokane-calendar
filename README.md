@@ -110,6 +110,28 @@ Question: How to use Restful Routing and static pages like about us together? Sh
 ANSWER: Don't bother. I typically create a PagesController for all static pages. So you'd have actions like PagesController@about, PagesController@contact, etc.
 ```
 
+## Want to debug requests?
+
+```
+   public function store()
+    {
+        // die('hello'); // get something to show
+        // dump(request()->all()); //show all the data
+
+        $article = new Article();
+
+        // pass article data over
+        $article->title = request('title');
+        $article->excerpt = request('excerpt');
+        $article->body = request('body');
+
+        $article->save();
+
+        // redirect
+        return redirect('/articles');
+    }
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

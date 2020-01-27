@@ -20,6 +20,8 @@ Released   : 20140225
 <link href="/css/default.css" rel="stylesheet" />
 <link href="/css/fonts.css" rel="stylesheet" />
 
+@yield('head')
+
 </head>
 <body>
 	<div id="header-wrapper">

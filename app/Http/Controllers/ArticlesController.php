@@ -37,10 +37,23 @@ class ArticlesController extends Controller
 
     public function create()
     { // 
+        return view('articles.create');
     }
 
     public function store()
-    { // 
+    {
+        // die('hello'); // get something to show
+        // dump(request()->all());
+
+        $article = new Article();
+
+        $article->title = request('title');
+        $article->excerpt = request('excerpt');
+        $article->body = request('body');
+
+        $article->save();
+
+        return redirect('/articles');
     }
 
     public function edit()
