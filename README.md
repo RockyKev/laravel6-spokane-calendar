@@ -11,7 +11,21 @@
 
 ### boot up the server
 
+Fresh install of repo?
+
+1. npm start
+2. composer install
+3. php artisan key:generate
+4. php artisan serve
+5. make sure database is connected
+6. ensure .env file exists and loads (it's the default rootpassword)
+7. Create a few blog posts -- http://127.0.0.1:8000/articles/create
+
+Kick it off?
 php artisan serve
+
+LINUX: http://localhost/phpmyadmin/
+need to restart apache? sudo service apache2 restart
 
 ### make things
 

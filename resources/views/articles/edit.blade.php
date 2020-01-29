@@ -8,20 +8,18 @@
 
 <div id="wrapper">
     <div id="page" class="container">
-        <h1 class="heading has-text-weight-bold is-size-4">New Article</h1>
+        <h1 class="heading has-text-weight-bold is-size-4">Update Article</h1>
 
-        <form method="POST" action="/articles">
+        <form method="POST" action="/articles/{{$article->id}}">
             @csrf
+            @method('PUT')
             <!--   cross site request forgery -->
 
             <div class="field">
                 <label class="label" for="title">Title</label>
 
                 <div class="control">
-                    <input class="input @error('title') is-danger @enderror" type="text" name="title" id="title">
-                    @error('title')
-                        <p class="help is-danger">{{ $errors->first('title') }}</p>
-                    @enderror
+                    <input class="input" type="text" name="title" id="title" value={{ $article->title }} />
                 </div>
             </div>
 
@@ -30,15 +28,11 @@
 
                 <div class="control">
                     <textarea
-                        class="input @error('excerpt') is-danger @enderror"
+                        class="input"
                         type="text"
                         name="excerpt"
-                        id="excerpt" 
-                    ></textarea>
-                    @error('excerpt')
-                        <p class="help is-danger">{{ $errors->first('excerpt') }}</p>
-                    @enderror
-
+                        id="excerpt"
+                    >{{ $article->excerpt }}</textarea>
                 </div>
             </div>
 
@@ -47,14 +41,11 @@
 
                 <div class="control">
                     <textarea
-                        class="input @error('body') is-danger @enderror"
+                        class="input"
                         type="text"
                         name="body"
-                        id="body" 
-                    ></textarea>
-                    @error('body')
-                    <p class="help is-danger">{{ $errors->first('body') }}</p>
-                @enderror
+                        id="body"
+                    >{{ $article->body }}</textarea>
                 </div>
             </div>
 

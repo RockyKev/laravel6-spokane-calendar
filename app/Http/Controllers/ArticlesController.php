@@ -42,6 +42,15 @@ class ArticlesController extends Controller
 
     public function store()
     {
+        //always assume content is malicious
+        //extra validation serverside -- laravel's validation component. 
+        //default is that if any fail, it redirects and provide a error object
+        request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'excerpt' => 'required',
+            'body' => 'required'
+        ]);
+
         // die('hello'); // get something to show
         // dump(request()->all());
 
@@ -56,12 +65,26 @@ class ArticlesController extends Controller
         return redirect('/articles');
     }
 
-    public function edit()
+    public function edit($id)
     { // 
+
+        $article = Article::find($id);
+        //we need to find the article associated with the id
+        return view('articles.edit', compact('article'));
     }
 
-    public function update()
+    public function update($id)
     { // 
+
+        $article = Article::find($id);
+
+        $article->title = request('title');
+        $article->excerpt = request('excerpt');
+        $article->body = request('body');
+
+        $article->save();
+
+        return redirect('/articles/' . $article->id);
     }
 
 
