@@ -20,3 +20,30 @@ is the exact same as:
 is also
 
 @error('title') is-danger @enderror
+
+# For Finding ids of posts:
+
+Doesn't work with slugs.
+So articles/1 is valid
+articles/my-first-blogpost is not.
+
+    ```
+    public function show($id)
+    {
+        $article = Article::findOrFail($id);
+
+        // Show json
+        // return $article;
+
+        return view('articles.show', ['article' => $article]);
+    }
+
+```
+This is the same as the one below it.
+
+```
+
+    public function show(Article $article)
+    {
+        return view('articles.show', ['article' => $article]);
+    }
