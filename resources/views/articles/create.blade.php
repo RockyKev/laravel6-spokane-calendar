@@ -18,7 +18,9 @@
                 <label class="label" for="title">Title</label>
 
                 <div class="control">
-                    <input class="input @error('title') is-danger @enderror" type="text" name="title" id="title">
+                    <input class="input @error('title') is-danger @enderror" 
+                    type="text" name="title" 
+                    id="title" value="{{ old('title')}} " required>
                     @error('title')
                         <p class="help is-danger">{{ $errors->first('title') }}</p>
                     @enderror
@@ -33,8 +35,8 @@
                         class="input @error('excerpt') is-danger @enderror"
                         type="text"
                         name="excerpt"
-                        id="excerpt" 
-                    ></textarea>
+                        id="excerpt"  required
+                    >{{ old('excerpt') }}</textarea>
                     @error('excerpt')
                         <p class="help is-danger">{{ $errors->first('excerpt') }}</p>
                     @enderror
@@ -50,8 +52,8 @@
                         class="input @error('body') is-danger @enderror"
                         type="text"
                         name="body"
-                        id="body" 
-                    ></textarea>
+                        id="body"  required
+                    >{{ old('body') }}</textarea>
                     @error('body')
                     <p class="help is-danger">{{ $errors->first('body') }}</p>
                 @enderror
