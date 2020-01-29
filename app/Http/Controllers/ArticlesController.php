@@ -43,7 +43,7 @@ class ArticlesController extends Controller
         //always assume content is malicious
         //extra validation serverside -- laravel's validation component. 
         //default is that if any fail, it redirects and provide a error object
-        request()->validate([
+        $validatedRequest = request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'excerpt' => 'required',
             'body' => 'required'
@@ -52,13 +52,7 @@ class ArticlesController extends Controller
         // die('hello'); // get something to show
         // dump(request()->all());
 
-        $article = new Article();
-
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-
-        $article->save();
+        Article::create($validatedRequest);
 
         return redirect('/articles');
     }
@@ -72,17 +66,13 @@ class ArticlesController extends Controller
     public function update(Article $article)
     { // 
 
-        request()->validate([
+        $validatedRequest = request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'excerpt' => 'required',
             'body' => 'required'
         ]);
 
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-
-        $article->save();
+        $article->update($validatedRequest);
 
         return redirect('/articles/' . $article->id);
     }
