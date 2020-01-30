@@ -39,6 +39,7 @@ articles/my-first-blogpost is not.
     }
 
 ```
+
 This is the same as the one below it.
 
 ```
@@ -106,3 +107,32 @@ Is the same as
 
         Article::create($validatedAttributes);
 ```
+
+## Eloquent Syntax
+
+```
+    public function projects()
+    {
+        //Select * from project where user_id = X
+        return $this->hasMany(Project::class);
+    }
+```
+
+Essentially - this is a sql query. The table does need a user_id
+
+Eloquent Collection
+//$user = User::find(1); //select * from user where id = 1
+//$user->projects; //select \* from projects where user_id = $user->id
+//$user->projects->split(3)->first(1)->last(1)->groupBy(x)
+
+//\$project->user
+//it's referenced as a property, NOT a method.
+//SELECT \* from USER where Project_ID = x
+//It's translated to the approptate SQL query
+
+//hasOne
+//hasMany
+//belongsTo
+//belongsToMany
+//morphMany
+//MorphToMany

@@ -146,6 +146,25 @@ ANSWER: Don't bother. I typically create a PagesController for all static pages.
     }
 ```
 
+If you want to test it.
+
+```
+    php artisan tinker
+    $user = App\User::find(1);
+    $user->articles;
+```
+
+## Autogenerate fake SQL data
+
+1. php artisan tinker
+2. factory(App\User::class, 7)->create(); //this creates 7 users
+
+If you want to override
+factory(App\Article::class, 5)->create(['title'=> 'Override the title']);
+
+so to override it to assign the new articles for a specific user
+factory(App\Article::class, 5)->create(['user_id'=> '1']);
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
