@@ -2,11 +2,15 @@
 
 <div id="wrapper">
     <div id="page" class="container">
+
         @foreach ($articles as $article)
         <div id="content">
             <div class="title">
-                <a href="/articles/{{ $article->id}}"
-                    ><h2>{{ $article-> title }}</h2></a
+                {{-- <a href="/articles/{{ $article->id}}"> --}} 
+                    {{-- Using a named Route: --}}
+                    <a href="{{ route('articles.show', $article) }}">
+
+                    <h2>{{ $article-> title }}</h2></a
                 >
                 <p>
                     <img

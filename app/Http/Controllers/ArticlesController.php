@@ -74,7 +74,9 @@ class ArticlesController extends Controller
 
         $article->update($validatedRequest);
 
-        return redirect('/articles/' . $article->id);
+        return redirect(route($article->path));
+
+        // return redirect(route('articles.show', $article));
     }
 
 
