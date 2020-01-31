@@ -39,26 +39,38 @@ class ArticlesController extends Controller
 
     public function create()
     { // 
-        return view('articles.create');
+        $tags = Tag::all();
+
+        return view('articles.create', [
+            'tags' => $tags
+        ]);
     }
+
 
     public function store()
     {
+
         //always assume content is malicious
         //extra validation serverside -- laravel's validation component. 
         //default is that if any fail, it redirects and provide a error object
         $validatedRequest = request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'excerpt' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'tags' => 'exists:tags,id'
         ]);
 
         // die('hello'); // get something to show
         // dump(request()->all());
 
-        Article::create($validatedRequest);
+        $article = new Article(request(['title', 'excerpt', 'body']));
+        $article->user_id = 1; //auth()->id();
+        $article->save();
 
-        return redirect('/articles');
+        $article->tags()->attach(request('tags'));
+
+        // Article::create($validatedRequest);
+        return redirect(route('articles.index'));
     }
 
     public function edit(Article $article)

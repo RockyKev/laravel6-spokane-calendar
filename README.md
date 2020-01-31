@@ -220,6 +220,42 @@ In php artisan tinker
 
 ```
 
+## Eloquent Recipes
+
+Attaching a tag
+
+```
+$article->tags()->attach(1)
+```
+
+//This takes the variable you created, visits the tag method, and uses the attach (1).
+
+```
+$article->tags()->attach([2,3])
+```
+
+//same, but with an array.
+
+detach is the opposite.
+
+```
+$article->tags()->detach([2,3])
+```
+
+\$tag = App\Tag::find(1);
+=> App\Tag {#3033
+id: 1,
+name: "laravel",
+created_at: "2020-01-30 00:00:00",
+updated_at: "2020-01-30 00:00:00",
+}
+
+> > > $article->tags()->attach($tag);
+> > > \$tag = App\Tag::find(2);
+
+You can provide a single ID. You can provide an array.
+You can provide a model. You canprovide an array of models.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
