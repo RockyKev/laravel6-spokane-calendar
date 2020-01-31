@@ -23,8 +23,20 @@ class Article extends Model
     //     return 'slug'; // Article::where('slug', $article)->first() 
     // }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
+
+
+//an article has many tags. And tags can have many articles.
+//if you have a tag
+
+// Article is Learn Laravel
+// so tags may be - php, laravel, work, education 

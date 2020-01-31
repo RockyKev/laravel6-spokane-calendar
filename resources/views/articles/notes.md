@@ -136,3 +136,38 @@ Eloquent Collection
 //belongsToMany
 //morphMany
 //MorphToMany
+
+## Relationships
+
+an article has many tags. And tags can have many articles.
+if you have a tag
+
+Article is Learn Laravel
+so tags may be - php, laravel, work, education
+
+## Model definition
+
+```
+class Article extends Model {
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+So this Article Model, when you call it's method - will return who owns this Article.
+It does this by looking for a user_id, because of how the function was named.
+
+But what if stakeholders doesn't want users, but authors?
+
+'public function author()' will not work.
+
+When you explore the belongsTo property, you can find other params that it accepts. user_id is one.
+
+```
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+```
