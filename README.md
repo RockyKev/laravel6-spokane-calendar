@@ -154,6 +154,10 @@ If you want to test it.
     $user->articles;
 ```
 
+## Get the request query
+
+if (request('tag')) { }
+
 ## Autogenerate fake SQL data
 
 1. php artisan tinker
@@ -164,6 +168,57 @@ factory(App\Article::class, 5)->create(['title'=> 'Override the title']);
 
 so to override it to assign the new articles for a specific user
 factory(App\Article::class, 5)->create(['user_id'=> '1']);
+
+## Cleaner output
+
+In php artisan tinker
+
+```
+>>> $article->tags;
+=> Illuminate\Database\Eloquent\Collection {#3029
+     all: [
+       App\Tag {#3019
+         id: 1,
+         name: "laravel",
+         created_at: "2020-01-30 00:00:00",
+         updated_at: "2020-01-30 00:00:00",
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#3035
+           article_id: 1,
+           tag_id: 1,
+         },
+       },
+       App\Tag {#3022
+         id: 2,
+         name: "php",
+         created_at: "2020-01-30 00:00:00",
+         updated_at: "2020-01-30 00:00:00",
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#3023
+           article_id: 1,
+           tag_id: 2,
+         },
+       },
+       App\Tag {#3036
+         id: 3,
+         name: "education",
+         created_at: "2020-01-30 00:00:00",
+         updated_at: "2020-01-30 00:00:00",
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#3033
+           article_id: 1,
+           tag_id: 3,
+         },
+       },
+     ],
+   }
+>>> $article->tags->pluck('name');
+=> Illuminate\Support\Collection {#3032
+     all: [
+       "laravel",
+       "php",
+       "education",
+     ],
+   }
+
+```
 
 ## About Laravel
 
