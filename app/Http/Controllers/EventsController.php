@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Event;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -17,23 +17,24 @@ use Illuminate\Http\Request;
 
 */
 
-
-class ArticlesController extends Controller
+class EventsController extends Controller
 {
     public function index()
     {
-        if (request('tag')) {
-            $articles = Tag::where('name', request('tag'))->firstOrFail()->articles;
-        } else {
-            $articles = Article::latest()->get();
-        }
+        // if (request('tag')) {
+        //     $articles = Tag::where('name', request('tag'))->firstOrFail()->articles;
+        // } else {
+        //     $articles = Article::latest()->get();
+        // }
 
-        return view('articles.index', ['articles' => $articles]);
+        $events = Event::latest()->get();
+
+        return view('events.index', ['events' => $events]);
     }
 
-    public function show(Article $article)
+    public function show(Event $event)
     {
-        return view('articles.show', ['article' => $article]);
+        return view('events.show', ['event' => $event]);
     }
 
 

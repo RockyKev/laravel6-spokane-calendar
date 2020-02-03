@@ -13,50 +13,59 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
-Route::get('/articles', 'ArticlesController@index')->name('articles.index');
-Route::post('/articles', 'ArticlesController@store');
-Route::get('/articles/create', 'ArticlesController@create');
-Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show'); //named routes
-Route::get('/articles/{article}/edit', 'ArticlesController@edit');
-Route::put('/articles/{article}', 'ArticlesController@update');
+Route::get('/events', 'EventsController@index');
+Route::post('/events', 'EventsController@store');
+Route::get('/events/create', 'EventsController@create');
+Route::get('/events/{event}', 'EventsController@show');
+Route::get('/events/{event}/edit', 'EventsController@edit');
+Route::put('/events/{event}', 'EventsController@update');
+Route::resource('article')
 
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 
-Route::get('/simple', function () {
-    return view('simplework');
-});
-
-Route::get('/about', function () {
-    // $articles = App\Article::all();
-    $articles = App\Article::take(3)->latest()->get();
-    // $articles = App\Article::take(2)->get();
-    // $articles = App\Article::paginate(2);
-
-    // return $article;
-    return view('about', [
-        'articles' => $articles
-    ]);
-});
+// Route::get('/articles', 'ArticlesController@index')->name('articles.index');
+// Route::post('/articles', 'ArticlesController@store');
+// Route::get('/articles/create', 'ArticlesController@create');
+// Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show'); //named routes
+// Route::get('/articles/{article}/edit', 'ArticlesController@edit');
+// Route::put('/articles/{article}', 'ArticlesController@update');
 
 
-Route::get('test', function () {
-    $name = request('name');
-    return view('test', [
-        'name' => $name
-    ]);
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
-// Route::get('/posts/{post}', function ($post) {
+// Route::get('/simple', function () {
+//     return view('simplework');
+// });
+
+// Route::get('/about', function () {
+//     // $articles = App\Article::all();
+//     $articles = App\Article::take(3)->latest()->get();
+//     // $articles = App\Article::take(2)->get();
+//     // $articles = App\Article::paginate(2);
+
+//     // return $article;
+//     return view('about', [
+//         'articles' => $articles
+//     ]);
+// });
+
+
+// Route::get('test', function () {
+//     $name = request('name');
+//     return view('test', [
+//         'name' => $name
+//     ]);
+// });
+
+// // Route::get('/posts/{post}', function ($post) {
 //     // return view('post');
 //     // return $post;
 
@@ -75,4 +84,4 @@ Route::get('test', function () {
 // });
 
 
-Route::get('/posts/{posts}', 'PostsController@show');
+// Route::get('/posts/{posts}', 'PostsController@show');
